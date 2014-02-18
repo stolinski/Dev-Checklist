@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html ng-app="launch">
   <head>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <script src="js/prefixfree.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -9,7 +9,8 @@
   <body>
     <div class="todo-wrapper" ng-controller="LaunchController">
       <h2>You've got <span class="emphasis">{{getLeftTodos()}}</span> items left</h2>
-      <div ng-repeat="todo in todos" class="list" data-columns>
+      <div class="items-wrapper">
+      <div ng-repeat="todo in todos" class="list">
         <h3>{{todo.type}}</h3>
       <ul>
         <li ng-repeat="item in todo.items" class="item">
@@ -19,6 +20,7 @@
           </label>
         </li>
       </ul>
+      </div>
       </div>
 <!--      <form>
         <input class="add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />

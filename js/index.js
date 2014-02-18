@@ -96,3 +96,11 @@ launch.controller('LaunchController', function( $scope, itemFactory) {
     return (1 - ($leftTodos/$totalTodos)) * 100;
   };  
 });
+
+document.addEventListener('DOMContentLoaded',function(){
+  var container = document.querySelector('.items-wrapper');
+  var msnry = new Masonry( container, {
+    // options
+    itemSelector: '.list'
+  });
+});
