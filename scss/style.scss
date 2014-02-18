@@ -1,0 +1,200 @@
+@import "compass/css3";
+
+$blue: #34495e;
+$dark-blue:#2c3e50;
+$white: #ecf0f1;
+$gray: #bdc3c7;
+$yellow:#f1c40f;
+$black: #7f8c8d;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $dark-blue;
+  font-family: 'Lato', sans-serif;
+  padding-top:5px;
+}
+
+.todo-wrapper {
+  background: $dark-blue;
+  width: 100%;
+}
+
+h2 {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 2em;
+  background: $blue;
+  padding: 20px 0 40px;
+  margin: 0;
+  color: $white;
+  text-align: center;
+}
+
+h3 {
+  color: $white;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 2em;
+  padding: 10px 30px;
+}
+.emphasis {
+  font-size: 2em;
+  font-weight: 300;
+  background: $white;
+  border-radius:100px;
+  color:$dark-blue;
+  display: inline-block;
+  height: 90px;
+  min-width: 90px;
+  line-height:90px;
+  margin: 0 10px;
+  bottom: -9px;
+  position: relative;
+  transition: all 0.3s ease;
+  &:hover {
+    bottom:0;
+  }
+}
+
+.list {
+  width: 50%;
+  float: left;
+}
+
+.list:nth-child(even)  {
+  border-right: solid 2px $dark-blue;
+}
+
+.list:nth-child(odd)  {
+  border-left: solid 2px $dark-blue;
+}
+
+
+ul {
+  padding: 0px;
+  margin: 0px;
+  background: #ecf0f1;
+}
+
+li {
+  font-size: 1.6em;
+  background: $white;
+  list-style-type: none;
+  margin-left: 0px;
+  font-weight: 300;
+  padding-left: 0px;
+  &:nth-child(odd) {
+    background: $gray;
+  }  
+  label {
+    padding: 20px;
+    display: block;
+    position: relative;
+    .slash {
+      float: right;
+      width: 350px;
+      left: 60px;
+      position: absolute;
+      top:50%;
+    }
+    .slash:after {
+      content:'';
+      height: 5px;     
+      background: $blue;
+      width: 0%;
+      float: right;
+      display: block;
+      transition: all 0.3s ease;
+    }
+    &:before {
+      content: '✔';
+      color: $black;
+      opacity: 0.2;
+      margin-right: 30px;
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+input[type="checkbox"] {
+    display:none;
+  &:checked + label:before {
+    opacity: 0.9;
+    color: $yellow;
+    text-shadow: 0px 1px 0px $dark-blue;    
+  }
+}
+
+
+.done-true {
+  color: $gray;
+  position:relative;
+  .slash:after {
+    width: 100%;
+    background: $gray;
+  }
+  
+}
+li:nth-child(odd) .done-true {
+  color: $white;
+  .slash:after {
+    background: $white;
+  }
+}
+
+.add-input {
+  width: 60%;
+  height: 20px;
+  float: left;
+  border: none;
+  padding: 40px 0;
+  font-size: 2em;
+  text-indent: 55px;
+}
+.add-btn {
+  width: 40%;
+  border: none;
+  background: #29F4E3;
+  padding: 0;
+  height: 100px;
+  h2 {
+   background: #29F4E3;
+   padding: 0;
+   font-size: 4em;
+   color: #333;
+  }
+}
+
+.clear-btn {
+  width: 100%;
+  border: none;
+  height: 100px;
+  background: #13756D;
+  font-size: 2em;
+  color: #aaa;
+}
+
+progress {
+  height: 5px;
+  width: 100%;
+  background: #f1c40f;
+  position: fixed;
+  top:0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  left: 0;
+}
+
+progress::-webkit-progress-value {
+  background: $yellow;
+  box-shadow: 5px 0 20px 10px #f1c40f;
+  transition: all 0.3s ease;
+  
+}
+
+progress::-webkit-progress-bar {
+  background-color: $dark-blue;
+}
