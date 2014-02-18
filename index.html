@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-  <html ng-app="app">
+  <html ng-app="launch">
   <head>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="js/prefixfree.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic,700italic' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div class="todo-wrapper" ng-controller="TodoCtrl">
+    <div class="todo-wrapper" ng-controller="LaunchController">
       <h2>You've got <span class="emphasis">{{getLeftTodos()}}</span> items left</h2>
-      <div ng-repeat="todo in todos" class="list">
+      <div ng-repeat="todo in todos" class="list" data-columns>
         <h3>{{todo.type}}</h3>
       <ul>
-        <li ng-repeat="item in todo.items">
+        <li ng-repeat="item in todo.items" class="item">
           <input type="checkbox" ng-model="item.done" id="{{item.text | breakFilter | lowercase }}"/>        
           <label class="done-{{item.done}}" for="{{item.text | breakFilter | lowercase }}">{{item.text}}
             <span class="slash"></span>
@@ -29,7 +28,11 @@
       <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>-->
       <progress id='p' max='100' value="{{getPercentTodos()}}"><span>0</span>%</progress>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js'></script>
+    <script src='js/masonry.pkgd.min.js'></script>
     <script src="js/index.js"></script>
+    <script src="js/services/todoStorage.js"></script>
+    
   </body>
 </html>

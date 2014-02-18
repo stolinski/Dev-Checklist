@@ -1,5 +1,14 @@
-function TodoCtrl($scope) {
-  $scope.todos = [
+var launch = angular.module('launch', []);
+
+launch.filter('breakFilter', function() {
+  return function(text) {
+     return text.replace(/ /g, '_') ; 
+  };
+});
+
+launch.factory('itemFactory', function() {
+  var factory = {};
+  var todos = [
     {type:'Mobile', items:[
       {text:'Small Phone (iPhone)', done:false},         
       {text: 'Large Phone (Galaxy S#)', done:false},
@@ -35,9 +44,28 @@ function TodoCtrl($scope) {
     {text: 'Redirect off www', done:false}]
     }
   ];
+
+  factory.getItems = function() {
+    return todos;
+  };
+
+  return factory;
+});
+  /*
+  $scope.addTodo = function () {
+    $scope.todos.push({text:$scope.formTodoText, done:false});
+    $scope.formTodoText = '';
+  };
   
+    $scope.clearCompleted = function () {
+        $scope.todos = _.filter($scope.todos, function(todo){
+            return !todo.done;
+        });
+    };*/
+launch.controller('LaunchController', function( $scope, itemFactory) {
+  $scope.todos = itemFactory.getItems();
+
   $scope.getLeftTodos = function () {
-    
     var $totalTodos = 0;
     
     _.each($scope.todos, function(group) {
@@ -66,26 +94,5 @@ function TodoCtrl($scope) {
       $totalTodos += $tempTotes.length;
     });
     return (1 - ($leftTodos/$totalTodos)) * 100;
-  };
-   
-  
-  /*
-  $scope.addTodo = function () {
-    $scope.todos.push({text:$scope.formTodoText, done:false});
-    $scope.formTodoText = '';
-  };
-  
-    $scope.clearCompleted = function () {
-        $scope.todos = _.filter($scope.todos, function(todo){
-            return !todo.done;
-        });
-    };*/
-}
-
-var app = angular.module('app', []);
-
-app.filter('breakFilter', function() {
-  return function(text) {
-     return text.replace(/ /g, '_') ; 
-  }
+  };  
 });

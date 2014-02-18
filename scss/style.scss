@@ -1,7 +1,6 @@
 @import "reset";
-@import "compass/css3";
-
-
+@import "compass";
+@import "breakpoint";
 
 $blue: #34495e;
 $dark-blue:#2c3e50;
@@ -18,11 +17,6 @@ body {
   background: $dark-blue;
   font-family: 'Lato', sans-serif;
   padding-top:5px;
-}
-
-.todo-wrapper {
-  background: $dark-blue;
-  width: 100%;
 }
 
 h2 {
@@ -43,6 +37,15 @@ h3 {
   font-size: 2em;
   padding: 10px 30px;
 }
+
+.todo-wrapper {
+  background: $dark-blue;
+  width: 100%;
+}
+
+
+/* --$HEADER-- */
+
 .emphasis {
   font-size: 2em;
   font-weight: 300;
@@ -62,9 +65,12 @@ h3 {
   }
 }
 
+
+/* --$LISTS-- */
+
 .list {
-  width: 50%;
-  float: left;
+  // width: 50%;
+  // float: left;
 }
 
 .list:nth-child(even)  {
@@ -75,6 +81,9 @@ h3 {
   border-left: solid 2px $dark-blue;
 }
 
+.list[data-columns]::before {
+  content: '3 .column.size-1of3';
+}
 
 ul {
   padding: 0px;
@@ -82,7 +91,7 @@ ul {
   background: #ecf0f1;
 }
 
-li {
+.item {
   font-size: 1.6em;
   background: $white;
   list-style-type: none;

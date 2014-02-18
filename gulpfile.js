@@ -21,7 +21,7 @@ var paths = {
 
 // JS hint task
 gulp.task('scripts', function() {
-  gulp.src('./js/*.js')
+  gulp.src('./js/index.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
