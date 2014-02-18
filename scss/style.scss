@@ -1,6 +1,7 @@
 @import "reset";
 @import "compass";
 @import "breakpoint";
+@import 'mixins';
 
 $blue: #34495e;
 $dark-blue:#2c3e50;
@@ -52,17 +53,23 @@ h3 {
   background: $white;
   border-radius:100px;
   color:$dark-blue;
-  display: inline-block;
+  display: block;
   height: 90px;
   min-width: 90px;
+  width: 90px;
   line-height:90px;
-  margin: 0 10px;
+  margin: 10px auto 30px;
   bottom: -9px;
   position: relative;
   transition: all 0.3s ease;
   &:hover {
     bottom:0;
   }
+  @include breakpoint(850px) {
+    width: auto;
+    display: inline-block;
+    margin: 0 10px;
+  }  
 }
 
 
@@ -86,10 +93,16 @@ h3 {
   border-right: solid 2px $dark-blue;
 }
 
-ul {
+.list ul {
   padding: 0px;
   margin: 0px;
   background: #ecf0f1;
+  overflow: hidden;
+  @include trans(0.3s);
+  max-height: 500px;
+  &.close {
+    max-height: 0;
+  }
 }
 
 .item {

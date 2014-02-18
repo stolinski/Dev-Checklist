@@ -103,4 +103,9 @@ document.addEventListener('DOMContentLoaded',function(){
     // options
     itemSelector: '.list'
   });
+
+  var d = document.getElementById("div1");
+  d.className = d.className + " otherclass";
+
+
 });
