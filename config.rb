@@ -1,4 +1,8 @@
-# Require any additional compass plugins here.
+# Require any additional compass plugins installed on your system.
+require 'compass-normalize'
+require 'rgbapng'
+require 'toolkit'
+require 'sass-globbing'
 
 # Set this to the root of your project when deployed:
 http_path = "/"
