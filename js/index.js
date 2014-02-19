@@ -6,48 +6,74 @@ launch.filter('breakFilter', function() {
   };
 });
 
+launch.filter('objectByKeyValFilter', function () {
+return function (input, filterKey, filterVal) {
+    var filteredInput ={};
+     angular.forEach(input, function(value, key){
+       if(value[filterKey] && value[filterKey] !== filterVal){
+          filteredInput[key]= value;
+        }
+     });
+     return filteredInput;
+}});
+
 launch.factory('itemFactory', function() {
   var factory = {};
   var todos = [
     {type:'Mobile', items:[
+      {text: 'Viewport Meta Tag', done:false},
+      {text: 'HTML5 Input Types', done:false},
       {text:'Small Phone (iPhone)', done:false},         
       {text: 'Large Phone (Galaxy S#)', done:false},
       {text: '7" Tablet', done:false},
-      {text: '10" Tablet', done:false}]
+      {text: '10" Tablet', done:false}], show:true
     }, {type:'Usability ', items:[
       {text:'404 Page', done:false},         
       {text: 'Favicon', done:false},
       {text: 'User Freindly URLs', done:false},
-      {text: 'Print Styles', done:false}]
+      {text: 'Print Styles', done:false}], show:true
     },{type:'SE0 ', items:[
       {text:'Robots.txt', done:false},         
       {text: 'sitemap.xml', done:false},
-      {text: 'Crafted Page Titles', done:false}]
+      {text: 'Crafted Page Titles', done:false}], show:true
     }, {type:'Social Media ', items:[
       {text:'Twitter Cards', done:false},         
       {text: 'Facebook Insights', done:false},
-      {text: 'Open Graph protocol', done:false}]
+      {text: 'Open Graph protocol', done:false}], show:true
     },{type:'Performance', items:[
-      {text:'Y-Slow Score 85+', done:false},         
-      {text: 'Large Phone (Galaxy S#)', done:false}]
+      {text:'Y-Slow Score 85+', done:false},
+      {text:'Optimize Images', done:false}], show:true
     },{type:'Accessibility', items:[
       {text:'ARIA Landmarks', done:false},         
       {text: 'Accessibility validation', done:false}]
     }, {type:'Code Quality', items:[
       {text:'JSLint/JSHint', done:false},         
-      {text: 'Semantic HTML', done:false}]
+      {text: 'Semantic HTML', done:false}], show:true
     }, {type:'Analytics', items:[
       {text:'Google Analytics', done:false},         
-      {text: 'Uptime Monitor', done:false}]
+      {text: 'Uptime Monitor', done:false}], show:true
     }, {type:'Finalizing', items:[
-    {text:'Check For Broken Links', done:false},         
-    {text: 'Redirect off www', done:false}]
+      {text:'Check For Broken Links', done:false},         
+      {text: 'Redirect off www', done:false}], show:true
+    }, {type:'Drupal', items:[
+      {text: 'Load PHP Modules', done:false},
+      {text: 'Caching On', done:false},
+      {text: 'Advacned Agg', done:false},         
+      {text: 'Cache View', done:false}], show:false
+    }, {type:'WordPress', items:[
+      {text: 'Viewport Meta Tag', done:false},
+      {text: 'HTML5 Input Types', done:false},
+      {text:'Small Phone (iPhone)', done:false},         
+      {text: 'Large Phone (Galaxy S#)', done:false},
+      {text: '7" Tablet', done:false},
+      {text: '10" Tablet', done:false}], show:false
     }
   ];
 
   factory.getItems = function() {
     return todos;
   };
+
 
   return factory;
 });
@@ -64,6 +90,7 @@ launch.factory('itemFactory', function() {
     };*/
 launch.controller('LaunchController', function( $scope, itemFactory) {
   $scope.todos = itemFactory.getItems();
+  $scope.add = "Add";
 
   $scope.getLeftTodos = function () {
     var $totalTodos = 0;
@@ -76,6 +103,18 @@ launch.controller('LaunchController', function( $scope, itemFactory) {
     });
     return $totalTodos;
   };
+
+  $scope.addList = function (filter) {
+    $list = _.find($scope.todos, function(item) {
+      return item.type === filter;
+    });
+    if ($list.show === true) {
+      $list.show = false;
+    } else {
+      $list.show = true;
+    }
+  };
+
   
     
   $scope.getPercentTodos = function () {
@@ -97,15 +136,58 @@ launch.controller('LaunchController', function( $scope, itemFactory) {
   };  
 });
 
-document.addEventListener('DOMContentLoaded',function(){
-  var container = document.querySelector('.items-wrapper');
-  var msnry = new Masonry( container, {
-    // options
-    itemSelector: '.list'
-  });
 
-  var d = document.getElementById("div1");
-  d.className = d.className + " otherclass";
-
-
-});
+launch.directive("masonry", function () {
+    var NGREPEAT_SOURCE_RE = '<!-- ngRepeat: ((.*) in ((.*?)( track by (.*))?)) -->';
+    return {
+        compile: function(element, attrs) {
+            // auto add animation to brick element
+            var animation = attrs.ngAnimate || "'masonry'";
+            var $brick = element.children();
+            $brick.attr("ng-animate", animation);
+            
+            // generate item selector (exclude leaving items)
+            var type = $brick.prop('tagName');
+            var itemSelector = type+":not([class$='-leave-active'])";
+            
+            return function (scope, element, attrs) {
+                var options = angular.extend({
+                    itemSelector: itemSelector
+                }, scope.$eval(attrs.masonry));
+                
+                // try to infer model from ngRepeat
+                if (!options.model) { 
+                    var ngRepeatMatch = element.html().match(NGREPEAT_SOURCE_RE);
+                    if (ngRepeatMatch) {
+                        options.model = ngRepeatMatch[4];
+                    }
+                }
+                
+                // initial animation
+                element.addClass('masonry');
+                
+                // Wait inside directives to render
+                setTimeout(function () {
+                    element.masonry(options);
+                    
+                    element.on("$destroy", function () {
+                        element.masonry('destroy')
+                    });
+                    
+                    if (options.model) {
+                        scope.$apply(function() {
+                            scope.$watchCollection(options.model, function (_new, _old) {
+                                if(_new == _old) return;
+                                
+                                // Wait inside directives to render
+                                setTimeout(function () {
+                                    element.masonry("reload");
+                                });
+                            });
+                        });
+                    }
+                });
+            };
+        }
+    };
+})

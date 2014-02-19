@@ -24,8 +24,8 @@
   <body>
     <div class="todo-wrapper" ng-controller="LaunchController">
       <h2>You've got <span class="emphasis">{{getLeftTodos()}}</span> items left</h2>
-      <div class="items-wrapper">
-      <div ng-repeat="todo in todos" class="list">
+      <div class="items-wrapper" masonry="true">
+      <div ng-repeat="todo in todos | objectByKeyValFilter:'show':'true'" class="list masonry">
         <h3 class="list-title">{{todo.type}}</h3>
       <ul>
         <li ng-repeat="item in todo.items" class="item">
@@ -37,17 +37,14 @@
       </ul>
       </div>
       </div>
-<!--      <form>
-        <input class="add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
-        <button class="add-btn" ng-click="addTodo()"><h2>Add</h2></button>
-      </form>
-
-      <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>-->
-      <progress id='p' max='100' value="{{getPercentTodos()}}"><span>0</span>%</progress>
+      <button class="add-btn" ng-click="addList('Drupal')"><h2>{{ add }} Drupal</h2></button>
+      <button class="add-btn" ng-click="addList('WordPress')"><h2>{{ add }}  WordPress</h2></button>
+      <progress id='p' max='100' value="{{getPercentTodos()}}"></progress>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js'></script>
-    <script src='js/masonry.pkgd.min.js'></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.08/jquery.masonry.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/services/todoStorage.js"></script>
     

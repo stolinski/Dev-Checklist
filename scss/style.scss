@@ -82,6 +82,11 @@ h3 {
     border-left: solid 2px $dark-blue;
     border-right: solid 2px $dark-blue;
   }
+  @include breakpoint(1500px) {
+    width: 33.33333%;
+    border-left: solid 2px $dark-blue;
+    border-right: solid 2px $dark-blue;
+  }
 }
 
 .list:nth-child(odd)  {
@@ -224,4 +229,36 @@ progress::-webkit-progress-value {
 
 progress::-webkit-progress-bar {
   background-color: $dark-blue;
+}
+
+
+/**** Transitions ****/
+
+.masonry,
+.masonry li { /* apply before masonry add class */
+    
+    -webkit-transition-duration: .7s;
+    transition-duration: .7s;
+    
+    -webkit-transition-property: all;
+    transition-property: all;
+}
+
+.masonry .masonry-enter { /* limit animated properties for entering elements */
+    -webkit-transition-property: -webkit-transform, opacity;
+    transition-property: transform, opacity;
+}
+
+.masonry-enter,
+.masonry-leave.masonry-leave-active {
+    opacity: 0;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+}
+
+.masonry-leave,
+.masonry-enter.masonry-enter-active {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
