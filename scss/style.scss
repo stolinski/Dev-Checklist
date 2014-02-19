@@ -39,6 +39,55 @@ h3 {
   padding: 10px 30px;
 }
 
+.settings-trigger {
+  color: white;
+  @include fs(28px);
+  position: absolute;
+  top:10px;
+  right: 10px;
+  opacity: 0.7;
+  @include trans;
+  z-index: 1000;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.settings {
+  overflow: hidden;
+  max-height: 0;
+  text-align: center;
+  padding: 0;
+  top:0;
+  background: $dark-blue;
+  width: 100%;
+  z-index: 100;
+  position: absolute;
+  @include trans;
+  @include box-shadow(1px 1px 5px rgba(black, 0.3));
+  li {
+    border-top: solid 2px $blue;
+    span {
+      display: block;
+      width: 100%;
+      border: none;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding:15px;
+      margin: 2px;
+      outline: none;
+      @include fs(20px);
+      @include trans;
+    }
+  }
+  &.open {
+    max-height: 400px;
+  }
+}
+
 .todo-wrapper {
   background: $dark-blue;
   width: 100%;
@@ -186,17 +235,41 @@ li:nth-child(odd) .done-true {
   font-size: 2em;
   text-indent: 55px;
 }
+
 .add-btn {
-  width: 40%;
+  position: relative;
+  background: $dark-blue;
+  display: block;
+  width: 100%;
   border: none;
-  background: #29F4E3;
-  padding: 0;
-  height: 100px;
-  h2 {
-   background: #29F4E3;
-   padding: 0;
-   font-size: 4em;
-   color: #333;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding:10px;
+  outline: none;
+  @include fs(20px);
+  @include trans;
+  &:before {
+    position: absolute;
+    left: 10px;
+    content: '\f055';
+    float: left;
+    font-family:'FontAwesome';
+    display: inline-block;
+    opacity: 0.7;
+    color: #E74C3C;
+    @include trans;
+  }
+  &:hover {
+    background: $blue;
+  }
+  &.active {
+    background: $blue;
+    &:before {
+      opacity: 1;
+      @include transform(rotate(-135deg));
+    }
   }
 }
 
@@ -212,7 +285,7 @@ li:nth-child(odd) .done-true {
 progress {
   height: 5px;
   width: 100%;
-  background: #f1c40f;
+  background: $yellow;
   position: fixed;
   top:0;
   transition: all 0.3s ease;
@@ -222,7 +295,7 @@ progress {
 
 progress::-webkit-progress-value {
   background: $yellow;
-  box-shadow: 5px 0 20px 10px #f1c40f;
+  box-shadow: 5px 0 20px 10px $yellow;
   transition: all 0.3s ease;
   
 }
@@ -230,9 +303,6 @@ progress::-webkit-progress-value {
 progress::-webkit-progress-bar {
   background-color: $dark-blue;
 }
-
-
-/**** Transitions ****/
 
 .masonry,
 .masonry li { /* apply before masonry add class */

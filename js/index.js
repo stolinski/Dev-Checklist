@@ -20,7 +20,19 @@ return function (input, filterKey, filterVal) {
 launch.factory('itemFactory', function() {
   var factory = {};
   var todos = [
-    {type:'Mobile', items:[
+    {type:'Drupal', items:[
+      {text: 'Load PHP Modules', done:false},
+      {text: 'Caching On', done:false},
+      {text: 'Advacned Agg', done:false},         
+      {text: 'Cache View', done:false}], show:false
+    }, {type:'WordPress', items:[
+      {text: 'Viewport Meta Tag', done:false},
+      {text: 'HTML5 Input Types', done:false},
+      {text:'Small Phone (iPhone)', done:false},         
+      {text: 'Large Phone (Galaxy S#)', done:false},
+      {text: '7" Tablet', done:false},
+      {text: '10" Tablet', done:false}], show:false
+    }, {type:'Mobile', items:[
       {text: 'Viewport Meta Tag', done:false},
       {text: 'HTML5 Input Types', done:false},
       {text:'Small Phone (iPhone)', done:false},         
@@ -55,25 +67,12 @@ launch.factory('itemFactory', function() {
     }, {type:'Finalizing', items:[
       {text:'Check For Broken Links', done:false},         
       {text: 'Redirect off www', done:false}], show:true
-    }, {type:'Drupal', items:[
-      {text: 'Load PHP Modules', done:false},
-      {text: 'Caching On', done:false},
-      {text: 'Advacned Agg', done:false},         
-      {text: 'Cache View', done:false}], show:false
-    }, {type:'WordPress', items:[
-      {text: 'Viewport Meta Tag', done:false},
-      {text: 'HTML5 Input Types', done:false},
-      {text:'Small Phone (iPhone)', done:false},         
-      {text: 'Large Phone (Galaxy S#)', done:false},
-      {text: '7" Tablet', done:false},
-      {text: '10" Tablet', done:false}], show:false
     }
   ];
 
   factory.getItems = function() {
     return todos;
   };
-
 
   return factory;
 });
@@ -190,4 +189,12 @@ launch.directive("masonry", function () {
             };
         }
     };
-})
+});
+
+$('.settings-trigger').on('click', function() {
+  $('.settings').toggleClass('open');
+});
+
+$('.add-btn').on('click', function() {
+  $(this).toggleClass('active');
+});
