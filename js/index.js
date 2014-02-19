@@ -20,18 +20,17 @@ return function (input, filterKey, filterVal) {
 launch.factory('itemFactory', function() {
   var factory = {};
   var todos = [
-    {type:'Drupal', items:[
+    {type:'ITS', items:[
+      {text: 'Database Request', done:false, info:'http://services.it.umich.edu/midatabase'},
+      {text: 'Access Permissions', done:false}], show:true
+    }, {type:'Drupal', items:[
       {text: 'Load PHP Modules', done:false},
       {text: 'Caching On', done:false},
       {text: 'Advacned Agg', done:false},         
       {text: 'Cache View', done:false}], show:false
     }, {type:'WordPress', items:[
-      {text: 'Viewport Meta Tag', done:false},
-      {text: 'HTML5 Input Types', done:false},
-      {text:'Small Phone (iPhone)', done:false},         
-      {text: 'Large Phone (Galaxy S#)', done:false},
-      {text: '7" Tablet', done:false},
-      {text: '10" Tablet', done:false}], show:false
+      {text: 'Load PHP Modules', done:false},
+      {text: 'SFTP Update Plugin', done:false}], show:false
     }, {type:'Mobile', items:[
       {text: 'Viewport Meta Tag', done:false},
       {text: 'HTML5 Input Types', done:false},

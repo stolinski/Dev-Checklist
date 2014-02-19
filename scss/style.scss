@@ -160,6 +160,7 @@ h3 {
 }
 
 .item {
+  position: relative;
   font-size: 1.6em;
   background: $white;
   list-style-type: none;
@@ -170,7 +171,7 @@ h3 {
     background: $gray;
   }  
   label {
-    padding: 20px;
+    padding: 20px 20px 20px 60px;
     display: block;
     position: relative;
     .slash {
@@ -190,6 +191,8 @@ h3 {
       transition: all 0.3s ease;
     }
     &:before {
+      position: absolute;
+      left: 20px;
       content: '\f00c';
       font-family:'FontAwesome';
       color: $black;
@@ -226,6 +229,19 @@ li:nth-child(odd) .done-true {
   }
 }
 
+.info {
+  position: absolute;
+  right: 10px;
+  top:0;
+  padding:20px;
+  color: $black;
+  opacity: 0.3;
+  @include trans;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
 .add-input {
   width: 60%;
   height: 20px;
@@ -257,17 +273,21 @@ li:nth-child(odd) .done-true {
     float: left;
     font-family:'FontAwesome';
     display: inline-block;
-    opacity: 0.7;
-    color: #E74C3C;
+    opacity: 0.5;
+    color: $white;
     @include trans;
   }
   &:hover {
     background: $blue;
+    &:before {
+      opacity: 0.8;
+    }
   }
   &.active {
     background: $blue;
     &:before {
       opacity: 1;
+      color: #E74C3C;
       @include transform(rotate(-135deg));
     }
   }
