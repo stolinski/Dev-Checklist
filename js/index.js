@@ -20,61 +20,109 @@ return function (input, filterKey, filterVal) {
 launch.factory('itemFactory', function() {
   var factory = {};
   var todos = {
-  //   {type:'ITS', items:[
-  //     {text: 'Database Request', done:false, info:'http://services.it.umich.edu/midatabase'},
-  //     {text: 'Access Permissions', done:false}], show:true
-  //   }, {type:'Drupal', items:[
-  //     {text: 'Load PHP Modules', done:false},
-  //     {text: 'Caching On', done:false},
-  //     {text: 'Advacned Agg', done:false},         
-  //     {text: 'Cache View', done:false}], show:false
-  //   }, {type:'WordPress', items:[
-  //     {text: 'Load PHP Modules', done:false},
-  //     {text: 'SFTP Update Plugin', done:false}], show:false
-  //   }, {type:'Mobile', items:[
-  //     {text: 'Viewport Meta Tag', done:false},
-  //     {text: 'HTML5 Input Types', done:false, info:'http://html5tutorial.info/html5-contact.php'},
-  //     {text:'Small Phone (iPhone)', done:false},         
-  //     {text: 'Large Phone (Galaxy S#)', done:false},
-  //     {text: '7" Tablet', done:false},
-  //     {text: '10" Tablet', done:false}], show:true
-  //   }, {type:'Usability ', items:[
-  //     {text:'404 Page', done:false},         
-  //     {text: 'Favicon', done:false},
-  //     {text: 'User Freindly URLs', done:false},
-  //     {text: 'Print Styles', done:false}], show:true
-  //   },{type:'SE0 ', items:[
-  //     {text:'Robots.txt', done:false, info:'http://tools.seobook.com/robots-txt/'},         
-  //     {text: 'sitemap.xml', done:false},
-  //     {text: 'Crafted Page Titles', done:false}], show:true
-  //   }, {type:'Social Media ', items:[
-  //     {text:'Twitter Cards', done:false},         
-  //     {text: 'Facebook Insights', done:false},
-  //     {text: 'Open Graph protocol', done:false}], show:true
-  //   },{type:'Performance', items:[
-  //     {text:'Y-Slow Score 85+', done:false},
-  //     {text:'Optimize Images', done:false}], show:true
-  //   },{type:'Accessibility', items:[
-  //     {text:'ARIA Landmarks', done:false},         
-  //     {text: 'Accessibility validation', done:false}]
-  //   }, {type:'Code Quality', items:[
-  //     {text:'JSLint/JSHint', done:false},         
-  //     {text: 'Semantic HTML', done:false}], show:true
- //  }, 
+    'ITS': {
+      type:'ITS', 
+      items:[
+        {text: 'Database Request', done:false, info:'http://services.it.umich.edu/midatabase'},
+        {text: 'Access Permissions', done:false}
+      ], 
+      show:true
+    }, 
+    'Drupal': {
+      type:'Drupal', 
+      items:[
+        {text: 'Load PHP Modules', done:false},
+        {text: 'Caching On', done:false},
+        {text: 'Advacned Agg', done:false},         
+        {text: 'Cache View', done:false}
+      ], 
+      show:false
+    }, 
+    'WordPress': {
+      type:'WordPress', 
+      items:[
+        {text: 'Load PHP Modules', done:false},
+        {text: 'SFTP Update Plugin', done:false}
+      ], 
+      show:false
+    }, 
+    'Mobile': {
+      type:'Mobile', 
+      items:[
+        {text: 'Viewport Meta Tag', done:false},
+        {text: 'HTML5 Input Types', done:false, info:'http://html5tutorial.info/html5-contact.php'},
+        {text:'Small Phone (iPhone)', done:false},         
+        {text: 'Large Phone (Galaxy S#)', done:false},
+        {text: '7" Tablet', done:false},
+        {text: '10" Tablet', done:false}
+      ], 
+      show:true
+    }, 
+    'Usability' : {
+      type:'Usability', 
+      items:[
+        {text:'404 Page', done:false},         
+        {text: 'Favicon', done:false},
+        {text: 'User Freindly URLs', done:false},
+        {text: 'Print Styles', done:false}], 
+      show:true
+    },
+    'SE0': {
+      type:'SE0', 
+      items:[
+        {text:'Robots.txt', done:false, info:'http://tools.seobook.com/robots-txt/'},         
+        {text: 'sitemap.xml', done:false},
+        {text: 'Crafted Page Titles', done:false}
+      ], 
+      show:true
+    }, 
+    'Social Media' : {
+      type:'Social Media', 
+      items:[
+        {text:'Twitter Cards', done:false},         
+        {text: 'Facebook Insights', done:false},
+        {text: 'Open Graph protocol', done:false}
+      ], 
+      show:true
+    },
+    'Performance': {
+      type:'Performance', 
+      items:[
+        {text:'Y-Slow Score 85+', done:false},
+        {text:'Optimize Images', done:false}
+      ], 
+      show:true
+    },
+    'Accessibility': {
+      type:'Accessibility', 
+      items:[
+        {text:'ARIA Landmarks', done:false},         
+        {text: 'Accessibility validation', done:false}
+      ],
+      show:true
+    }, 
+    'CodeQuality': {
+      type:'Code Quality', 
+      items:[
+        {text:'JSLint/JSHint', done:false},         
+        {text: 'Semantic HTML', done:false}
+      ], 
+      show:true
+    }, 
     'Analytics': {
       type: "Analytics",
       items: [
         {text:'Google Analytics', done:false},         
         {text: 'Uptime Monitor', done:false}
-        ], 
+      ], 
       show:true 
-      },
+    },
     'Finalizing': {
       type: 'Finalizing', 
       items:[
         {text:'Check For Broken Links', done:false},         
         {text: 'Redirect off www', done:false}
-        ],
+      ],
       show:true 
     }
   }
@@ -126,7 +174,7 @@ launch.controller('LaunchController', function( $scope, itemFactory, $localStora
   };
 
   
-    
+
   $scope.getPercentTodos = function () {
     
     var $leftTodos = 0;
@@ -143,7 +191,14 @@ launch.controller('LaunchController', function( $scope, itemFactory, $localStora
       $totalTodos += $tempTotes.length;
     });
     return (1 - ($leftTodos/$totalTodos)) * 100;
-  };  
+  }; 
+
+
+
+  $scope.clearData = function () {
+    $localStorage.$reset(itemFactory.getItems());
+  };
+
 });
 
 

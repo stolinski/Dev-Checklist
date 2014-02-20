@@ -6,7 +6,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <script src="js/prefixfree.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -49,13 +49,14 @@
         </li>
       </ul>
       </div>
+
       </div>
+      <button class="clear-btn" ng-click="clearData()">Clear Data</button>
       <progress id='p' max='100' value="{{getPercentTodos()}}"></progress>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
-     <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
-    <!-- <script src="http://gregpike.net/demos/angular-local-storage/angular-local-storage.js"></script> -->
+    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js'></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.08/jquery.masonry.min.js"></script>
     <script src="js/index.js"></script>
