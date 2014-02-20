@@ -297,9 +297,11 @@ li:nth-child(odd) .done-true {
   width: 100%;
   border: none;
   height: 100px;
-  background: #13756D;
+  background: #16a085;
   font-size: 2em;
-  color: #aaa;
+  font-family: 'Lato', sans-serif;
+  color: $white;
+  margin-top: 50px;
 }
 
 progress {
