@@ -34,7 +34,7 @@ launch.factory('itemFactory', function() {
       items:[
         {text: 'Load PHP Modules', done:false},
         {text: 'Caching On', done:false},
-        {text: 'Advacned Agg', done:false},         
+        {text: 'Advacned Agg', done:false, info:'https://drupal.org/project/advagg'},         
         {text: 'Cache View', done:false}
       ], 
       show:false
@@ -80,7 +80,7 @@ launch.factory('itemFactory', function() {
     'Social Media' : {
       type:'Social Media', 
       items:[
-        {text:'Twitter Cards', done:false},         
+        {text:'Twitter Cards', done:false, info:'https://dev.twitter.com/docs/cards'},         
         {text: 'Facebook Insights', done:false},
         {text: 'Open Graph protocol', done:false}
       ], 
@@ -89,7 +89,7 @@ launch.factory('itemFactory', function() {
     'Performance': {
       type:'Performance', 
       items:[
-        {text:'Y-Slow Score 85+', done:false},
+        {text:'Y-Slow Score 85+', done:false, info:'http://developer.yahoo.com/yslow/'},
         {text:'Optimize Images', done:false}
       ], 
       show:true
@@ -114,7 +114,7 @@ launch.factory('itemFactory', function() {
       type: "Analytics",
       items: [
         {text:'Google Analytics', done:false},         
-        {text: 'Uptime Monitor', done:false}
+        {text: 'Uptime Monitor', done:false, info:'http://uptimerobot.com/'}
       ], 
       show:true 
     },

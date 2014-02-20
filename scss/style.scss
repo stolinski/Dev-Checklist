@@ -171,6 +171,7 @@ h3 {
     background: $gray;
   }  
   label {
+    cursor: pointer;
     padding: 20px 20px 20px 60px;
     display: block;
     position: relative;
@@ -302,6 +303,11 @@ li:nth-child(odd) .done-true {
   font-family: 'Lato', sans-serif;
   color: $white;
   margin-top: 50px;
+  @include trans;
+  cursor: pointer;
+  &:hover {
+    background: #16a085 - 30;
+  }
 }
 
 progress {
