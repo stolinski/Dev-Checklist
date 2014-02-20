@@ -199,8 +199,6 @@ launch.controller('LaunchController', function( $scope, itemFactory, $localStora
     }
   };
 
-
-
   $scope.clearData = function () {
     $localStorage.$reset(itemFactory.getItems());
   };
