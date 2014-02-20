@@ -15,7 +15,8 @@ return function (input, filterKey, filterVal) {
         }
      });
      return filteredInput;
-}});
+  };
+});
 
 launch.factory('itemFactory', function() {
   var factory = {};
@@ -125,7 +126,7 @@ launch.factory('itemFactory', function() {
       ],
       show:true 
     }
-  }
+  };
 
   factory.getItems = function() {
     return todos;
@@ -137,13 +138,9 @@ launch.factory('itemFactory', function() {
   $scope.addTodo = function () {
     $scope.todos.push({text:$scope.formTodoText, done:false});
     $scope.formTodoText = '';
-  };
+  };*/
   
-    $scope.clearCompleted = function () {
-        $scope.todos = _.filter($scope.todos, function(todo){
-            return !todo.done;
-        });
-    };*/
+
 launch.controller('LaunchController', function( $scope, itemFactory, $localStorage) {
 
   $scope.todos = itemFactory.getItems();
@@ -151,19 +148,48 @@ launch.controller('LaunchController', function( $scope, itemFactory, $localStora
   $scope.$storage = $localStorage.$default($temp);
 
   $scope.getLeftTodos = function () {
-    var $totalTodos = 0;
-    
-    _.each($scope.todos, function(group) {
+    var $leftTodos = 0;
+    var $shown = $scope.getShown();
+
+    _.each($shown, function(group) {
       var $tempTotes = _.filter(group.items, function(todo){
           return !todo.done;
       });
-    $totalTodos += $tempTotes.length;
+    $leftTodos += $tempTotes.length;
     });
-    return $totalTodos;
+    return $leftTodos;
   };
 
+
+  // Gets 0-100 % value of todos
+  $scope.getPercentTodos = function () {
+    // Gets Todos Not Checked
+    var $leftTodos = $scope.getLeftTodos();
+    var $totalTodos = 0;
+
+    // Gets All Shown Todos
+    var $shown = $scope.getShown();
+
+    // Finds the length of each list of todos and adds them together for the total todo items.
+    _.each($shown, function(item) {
+      $totalTodos += item.items.length;
+    });
+
+    // Returns 0-100 value for progress input 
+    return (1 - ($leftTodos/$totalTodos)) * 100;
+  };  
+
+
+  // Returns Todo items that are shown on screen.
+  $scope.getShown = function() {
+    var $shown = _.filter($scope.$storage, function(group) {
+      return group.show;
+    });
+    return $shown;
+  }
+
   $scope.addList = function (filter) {
-    $list = _.find($scope.todos, function(item) {
+    $list = _.find($scope.$storage, function(item) {
       return item.type === filter;
     });
     if ($list.show === true) {
@@ -172,26 +198,6 @@ launch.controller('LaunchController', function( $scope, itemFactory, $localStora
       $list.show = true;
     }
   };
-
-  
-
-  $scope.getPercentTodos = function () {
-    
-    var $leftTodos = 0;
-    _.each($scope.todos, function(group) {
-      var $tempTotes = _.filter(group.items, function(todo){
-          return !todo.done;
-      });
-    $leftTodos += $tempTotes.length;
-    });
-    
-    var $totalTodos = 0;
-    _.each($scope.todos, function(group) {
-      var $tempTotes = group.items; 
-      $totalTodos += $tempTotes.length;
-    });
-    return (1 - ($leftTodos/$totalTodos)) * 100;
-  }; 
 
 
 
@@ -236,7 +242,7 @@ launch.directive("masonry", function () {
                     element.masonry(options);
                     
                     element.on("$destroy", function () {
-                        element.masonry('destroy')
+                        element.masonry('destroy');
                     });
                     
                     if (options.model) {
