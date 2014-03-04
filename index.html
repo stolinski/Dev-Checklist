@@ -27,12 +27,13 @@
   <body>
     <i class="fa fa-cogs settings-trigger"></i>
     <div class="todo-wrapper" ng-controller="LaunchController">
+      <h1 class="logo"><img width="150" src="images/logo.svg" alt="Level Up Tuts"></h1>
       <h2>You have <span class="emphasis">{{getLeftTodos()}}</span> items left</h2>
       <ul class="settings">
         <li><span>Settings</span></li>
         <li><button class="add-btn" ng-click="addList('Drupal')">Drupal</button></li>
-        <li><button class="add-btn" ng-click="addList('WordPress')">WordPress</button></li>
-        <li><button class="add-btn active" ng-click="addList('ITS')">ITS Servers</button></li>
+<!--         <li><button class="add-btn" ng-click="addList('WordPress')">WordPress</button></li>
+        <li><button class="add-btn active" ng-click="addList('ITS')">ITS Servers</button></li> -->
       </ul>
       <div class="items-wrapper" masonry="true">
       <div ng-repeat="todo in $storage | objectByKeyValFilter:'show':'true'" class="list masonry">
@@ -54,6 +55,9 @@
       <button class="clear-btn" ng-click="clearData()">Clear Data</button>
       <progress id='p' max='100' value="{{getPercentTodos()}}"></progress>
     </div>
+    <footer>
+      <h4><a href="leveluptuts.com">Level Up Tuts</a></h4>
+    </footer>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
     <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>

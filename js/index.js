@@ -21,32 +21,23 @@ return function (input, filterKey, filterVal) {
 launch.factory('itemFactory', function() {
   var factory = {};
   var todos = {
-    'ITS': {
-      type:'ITS', 
-      items:[
-        {text: 'Database Request', done:false, info:'http://services.it.umich.edu/midatabase'},
-        {text: 'Access Permissions', done:false}
-      ], 
-      show:true
-    }, 
     'Drupal': {
       type:'Drupal', 
       items:[
-        {text: 'Load PHP Modules', done:false},
         {text: 'Caching On', done:false},
         {text: 'Advacned Agg', done:false, info:'https://drupal.org/project/advagg'},         
         {text: 'Cache View', done:false}
       ], 
       show:false
     }, 
-    'WordPress': {
-      type:'WordPress', 
-      items:[
-        {text: 'Load PHP Modules', done:false},
-        {text: 'SFTP Update Plugin', done:false}
-      ], 
-      show:false
-    }, 
+    // 'WordPress': {
+    //   type:'WordPress', 
+    //   items:[
+    //     {text: 'Load PHP Modules', done:false},
+    //     {text: 'SFTP Update Plugin', done:false}
+    //   ], 
+    //   show:false
+    // }, 
     'Mobile': {
       type:'Mobile', 
       items:[

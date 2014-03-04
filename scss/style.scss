@@ -20,15 +20,24 @@ body {
   padding-top:5px;
 }
 
+h1.logo {
+  position: absolute;
+  top:10px;
+  left: 10px;
+}
+
 h2 {
   font-weight: 900;
   text-transform: uppercase;
   font-size: 2em;
   background: $bg;
-  padding: 20px 0 40px;
+  padding: 70px 0 40px;
   margin: 0;
   color: $white;
   text-align: center;
+  @include breakpoint(530px) {
+    padding: 20px 0 40px;
+  }
 }
 
 h3 {
@@ -298,7 +307,7 @@ li:nth-child(odd) .done-true {
   width: 100%;
   border: none;
   height: 100px;
-  background: #16a085;
+  background: #e74c3c;
   font-size: 2em;
   font-family: 'Lato', sans-serif;
   color: $white;
@@ -306,7 +315,7 @@ li:nth-child(odd) .done-true {
   @include trans;
   cursor: pointer;
   &:hover {
-    background: #16a085 - 30;
+    background: #e74c3c - 30;
   }
 }
 
