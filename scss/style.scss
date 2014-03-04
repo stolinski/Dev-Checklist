@@ -3,11 +3,11 @@
 @import "breakpoint";
 @import 'mixins';
 
-$blue: #34495e;
-$dark-blue:#2c3e50;
+$bg: #564363;
+$dark-bg:#1F122C;
 $white: #ecf0f1;
 $gray: #bdc3c7;
-$yellow:#f1c40f;
+$accent:#5EDCDB;
 $black: #7f8c8d;
 
 * {
@@ -15,7 +15,7 @@ $black: #7f8c8d;
 }
 
 body {
-  background: $dark-blue;
+  background: $dark-bg;
   font-family: 'Lato', sans-serif;
   padding-top:5px;
 }
@@ -24,7 +24,7 @@ h2 {
   font-weight: 900;
   text-transform: uppercase;
   font-size: 2em;
-  background: $blue;
+  background: $bg;
   padding: 20px 0 40px;
   margin: 0;
   color: $white;
@@ -59,14 +59,14 @@ h3 {
   text-align: center;
   padding: 0;
   top:0;
-  background: $dark-blue;
+  background: $dark-bg;
   width: 100%;
   z-index: 100;
   position: absolute;
   @include trans;
   @include box-shadow(1px 1px 5px rgba(black, 0.3));
   li {
-    border-top: solid 2px $blue;
+    border-top: solid 2px $bg;
     span {
       display: block;
       width: 100%;
@@ -89,7 +89,7 @@ h3 {
 }
 
 .todo-wrapper {
-  background: $dark-blue;
+  background: $dark-bg;
   width: 100%;
 }
 
@@ -101,7 +101,7 @@ h3 {
   font-weight: 300;
   background: $white;
   border-radius:100px;
-  color:$dark-blue;
+  color:$dark-bg;
   display: block;
   height: 90px;
   min-width: 90px;
@@ -128,23 +128,23 @@ h3 {
   width: 100%;
   @include breakpoint(850px) {
     width: 50%;
-    border-left: solid 2px $dark-blue;
-    border-right: solid 2px $dark-blue;
+    border-left: solid 2px $dark-bg;
+    border-right: solid 2px $dark-bg;
   }
   @include breakpoint(1500px) {
     width: 33.33333%;
-    border-left: solid 2px $dark-blue;
-    border-right: solid 2px $dark-blue;
+    border-left: solid 2px $dark-bg;
+    border-right: solid 2px $dark-bg;
   }
 }
 
 .list:nth-child(odd)  {
-  border-right: solid 2px $dark-blue;
+  border-right: solid 2px $dark-bg;
 }
 
 .list:nth-child(even)  {
-  border-left: solid 2px $dark-blue;
-  border-right: solid 2px $dark-blue;
+  border-left: solid 2px $dark-bg;
+  border-right: solid 2px $dark-bg;
 }
 
 .list ul {
@@ -185,7 +185,7 @@ h3 {
     .slash:after {
       content:'';
       height: 5px;     
-      background: $blue;
+      background: $bg;
       width: 0%;
       float: right;
       display: block;
@@ -208,8 +208,8 @@ input[type="checkbox"] {
     display:none;
   &:checked + label:before {
     opacity: 0.9;
-    color: $yellow;
-    text-shadow: 0px 1px 0px $dark-blue;    
+    color: $accent;
+    text-shadow: 0px 1px 0px $dark-bg;    
   }
 }
 
@@ -255,7 +255,7 @@ li:nth-child(odd) .done-true {
 
 .add-btn {
   position: relative;
-  background: $dark-blue;
+  background: $dark-bg;
   display: block;
   width: 100%;
   border: none;
@@ -279,13 +279,13 @@ li:nth-child(odd) .done-true {
     @include trans;
   }
   &:hover {
-    background: $blue;
+    background: $bg;
     &:before {
       opacity: 0.8;
     }
   }
   &.active {
-    background: $blue;
+    background: $bg;
     &:before {
       opacity: 1;
       color: #E74C3C;
@@ -313,7 +313,7 @@ li:nth-child(odd) .done-true {
 progress {
   height: 5px;
   width: 100%;
-  background: $yellow;
+  background: $accent;
   position: fixed;
   top:0;
   transition: all 0.3s ease;
@@ -322,14 +322,14 @@ progress {
 }
 
 progress::-webkit-progress-value {
-  background: $yellow;
-  box-shadow: 5px 0 20px 10px $yellow;
+  background: $accent;
+  box-shadow: 5px 0 20px 10px $accent;
   transition: all 0.3s ease;
   
 }
 
 progress::-webkit-progress-bar {
-  background-color: $dark-blue;
+  background-color: $dark-bg;
 }
 
 .masonry,
